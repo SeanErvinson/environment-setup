@@ -1,0 +1,13 @@
+- name: Install Snap packages
+  snap:
+    name: "{{ item.name }}"
+    classic: "{{ item.classic | default(omit) }}"
+    channel: "{{ item.channel | default(omit) }}"
+  with_items: "{{ snap_packages_commons }}"
+
+- name: Install Dev Snap packages
+  snap:
+    name: "{{ item.name }}"
+    classic: "{{ item.classic | default(omit) }}"
+    channel: "{{ item.channel | default(omit) }}"
+  with_items: "{{ snap_packages_dev }}"

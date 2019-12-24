@@ -1,0 +1,15 @@
+snap_packages_commons:
+  - name: libreoffice
+  - name: vlc
+snap_packages_dev:
+  - name: docker
+  - name: postman
+  - name: chromium
+  - name: ufw
+  - name: dotnet-sdk
+    classic: "yes"
+  - name: code
+    classic: "yes"
+  - name: node
+    classic: "yes"
+    channel: 10/stable

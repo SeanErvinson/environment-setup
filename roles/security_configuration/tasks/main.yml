@@ -1,0 +1,19 @@
+- name: Enable UFW
+  ufw:
+    state: enabled
+    policy: allow
+    logging: "on"
+- name: Deny default SSH port
+  ufw:
+    rule: deny
+    port: ssh
+    proto: tcp
+- name: Allow OpenSSH
+  ufw:
+    rule: allow
+    name: OpenSSH
+- name: Limit SSH
+  ufw:
+    rule: limit
+    proto: tcp
+    port: "{{ ssh_port }}"

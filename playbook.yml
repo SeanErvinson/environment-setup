@@ -1,0 +1,17 @@
+- name: Initialize new machine
+  hosts: "{{ variable_host | default('localmachines') }}"
+  gather_facts: True
+  become: Yes
+  vars:
+    default_port: 2127
+  tasks:
+  roles:
+    - apt_initialization
+    - apt_installtion
+    - snap_installation
+    - snap_configure
+    - git_configure
+    - role: ssh_configuration
+      ssh_port: "{{ default_port }}"
+    - role: security_configuration
+      ssh_port: ssh_port

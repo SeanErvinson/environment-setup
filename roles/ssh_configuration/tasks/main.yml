@@ -1,0 +1,35 @@
+- name: Disallow Root Login
+  lineinfile:
+    path: "{{ sshdconfig }}"
+    regexp: "^[#]*PermitRootLogin"
+    line: "PermitRootLogin no"
+    backup: Yes
+    validate: "/usr/sbin/sshd -T -f %s"
+  notify: restart sshd
+
+- name: Disallow Password Authentication
+  lineinfile:
+    path: "{{ sshdconfig }}"
+    regexp: "^[#]*PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    backup: Yes
+    validate: "/usr/sbin/sshd -T -f %s"
+  notify: restart sshd
+
+- name: Change Default Port
+  lineinfile:
+    path: "{{ sshdconfig }}"
+    regexp: "^[#]*Port"
+    line: "Port {{ ssh_port }}"
+    backup: Yes
+    validate: "/usr/sbin/sshd -T -f %s"
+  notify: restart sshd
+
+- name: Allow PublicKey Authentication
+  lineinfile:
+    path: "{{ sshdconfig }}"
+    regexp: "^[#]*PubkeyAuthentication"
+    line: "PubkeyAuthentication yes"
+    backup: Yes
+    validate: "/usr/sbin/sshd -T -f %s"
+  notify: restart sshd

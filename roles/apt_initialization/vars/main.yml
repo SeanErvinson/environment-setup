@@ -1,0 +1,12 @@
+apt_18_packages:
+  - name: "abiword"
+  - name: "gnumeric"
+apt_19_packages:
+  - name: "2048"
+  - name: "trojita"
+  - name: "quassel"
+apt_commons_packages:
+  - name: "xpad"
+  - name: "pidgin"
+  - name: "sylpheed"
+  - name: "mtpaint"

@@ -1,0 +1,18 @@
+required_apt_packages:
+  - name: "wget"
+  - name: "build-essential"
+  - name: "curl"
+  - name: "gdebi"
+  - name: "net-tools"
+  - name: "git"
+  - name: "ca-certificates"
+  - name: "ssh"
+  - name: "openssh-server"
+  - name: "apt-transport-https"
+
+desktop_apt_packages:
+  - name: "htop"
+  - name: "snapd"
+  - name: "postgresql"
+  - name: "postgresql-contrib"
+  - name: "openjdk-11-jdk"

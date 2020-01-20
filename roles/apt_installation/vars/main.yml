@@ -16,3 +16,7 @@ desktop_apt_packages:
   - name: "postgresql"
   - name: "postgresql-contrib"
   - name: "openjdk-11-jdk"
+
+server_apt_packages:
+  - name: ufw
+  - name: nginx

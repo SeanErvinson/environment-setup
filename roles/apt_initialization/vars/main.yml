@@ -1,6 +1,10 @@
 apt_18_packages:
   - name: "abiword"
   - name: "gnumeric"
+  - name: "apt-transport-https"
+  - name: "ca-certificates"
+  - name: "curl"
+  - name: "software-properties-common"
 apt_19_packages:
   - name: "2048"
   - name: "trojita"

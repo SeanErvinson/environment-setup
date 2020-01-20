@@ -1,0 +1,25 @@
+- name: Adding Docker GPG key to system
+  command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  register: gpg
+
+- name: Adding Docker repository to APT
+  apt_repository:
+    repo: "{{ apt_18_source }}"
+  when: gpg is succeeded and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '18'
+  register: source
+
+- name: Adding Docker repository to APT
+  apt_repository:
+    repo: "{{ apt_19_source }}"
+  when: gpg is succeeded ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '19'
+  register: source
+
+- name: Update apt
+  apt:
+    update_cache: yes
+
+- name: Install Docker-CE
+  apt:
+    package: docker-ce
+    state: present
+  when: source is succeeded

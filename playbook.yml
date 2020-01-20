@@ -7,10 +7,12 @@
   tasks:
   roles:
     - apt_initialization
-    - apt_installtion
+    - apt_installation
+    - docker_installation
     - snap_installation
     - snap_configure
     - git_configure
+    - host_configuration
     - role: ssh_configuration
       ssh_port: "{{ default_port }}"
     - role: security_configuration

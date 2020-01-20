@@ -2,7 +2,6 @@ snap_packages_commons:
   - name: libreoffice
   - name: vlc
 snap_packages_dev:
-  - name: docker
   - name: postman
   - name: chromium
   - name: ufw

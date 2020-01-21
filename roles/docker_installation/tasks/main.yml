@@ -1,5 +1,7 @@
-- name: Adding Docker GPG key to system
-  command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+- name: Downloading Docker GPG
+  apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
   register: gpg
 
 - name: Adding Docker repository to APT
@@ -11,7 +13,7 @@
 - name: Adding Docker repository to APT
   apt_repository:
     repo: "{{ apt_19_source }}"
-  when: gpg is succeeded ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '19'
+  when: gpg is succeeded and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '19'
   register: source
 
 - name: Update apt

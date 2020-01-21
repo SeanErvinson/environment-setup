@@ -11,7 +11,7 @@
     - docker_installation
     - snap_installation
     - snap_configure
-    - git_configure
+    - git_configuration
     - host_configuration
     - role: ssh_configuration
       ssh_port: "{{ default_port }}"

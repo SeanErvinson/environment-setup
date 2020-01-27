@@ -1,0 +1,5 @@
+- name: Add deafult user
+  user:
+    name: sean
+    comment: Sean Ervinson
+    password: "{{ user_password }}"

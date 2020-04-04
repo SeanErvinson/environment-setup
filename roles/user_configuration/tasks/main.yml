@@ -2,4 +2,19 @@
   user:
     name: sean
     comment: Sean Ervinson
+    groups: docker sudo
+    append: yes
     password: "{{ user_password }}"
+
+- name: Add gitlab user
+  user:
+    name: gitlab
+    comment: gitlab-ci
+    groups: docker sudo
+    append: yes
+    password: "{{ user_password }}"
+
+- name: Add gitlab user as sudo without password
+  lineinfile:
+      dest: /etc/sudoers
+      line: "gitlab ALL=(ALL:ALL) NOPASSWD: ALL"

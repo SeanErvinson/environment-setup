@@ -5,12 +5,16 @@ apt_18_packages:
   - name: "ca-certificates"
   - name: "curl"
   - name: "software-properties-common"
-apt_19_packages:
-  - name: "2048"
+apt_19_20_packages:
+  - name: "2048-qt"
   - name: "trojita"
   - name: "quassel"
 apt_commons_packages:
   - name: "xpad"
   - name: "pidgin"
+  - name: "thunderbird"
   - name: "sylpheed"
   - name: "mtpaint"
+  - name: "gnome-mines"
+  - name: "gnome-sudoku"
+  - name: "sgt-puzzles"

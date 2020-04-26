@@ -8,15 +8,15 @@
 
 - name: Check distribution if Ubuntu 18
   set_fact:
-      packages: "{{ apt_18_packages }}"
+    packages: "{{ apt_18_packages }}"
   when:
     - ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '18'
 
 - name: Check distribution if Ubuntu 19
   set_fact:
-      packages: "{{ apt_19_packages }}"
+    packages: "{{ apt_19_20_packages }}"
   when:
-    - ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '19'
+    - ansible_distribution == 'Ubuntu' and ansible_distribution_major_version >= 19
 
 - name: Remove unwanted version softwares
   apt:

@@ -1,8 +1,9 @@
 - name: Downloading Docker GPG
   apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
   register: gpg
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version <= 19
 
 - name: Adding Docker repository to APT
   apt_repository:
@@ -19,9 +20,16 @@
 - name: Update apt
   apt:
     update_cache: yes
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < 19
 
 - name: Install Docker-CE
   apt:
     package: docker-ce
     state: present
-  when: source is succeeded
+  when: source is succeeded and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < 19
+
+- name: Install docker-compose (including the base docker) from apt
+  apt:
+    package: docker-compose
+    state: present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '20'

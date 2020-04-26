@@ -1,10 +1,8 @@
 snap_packages_commons:
-  - name: libreoffice
-  - name: vlc
+  - name: ufw
 snap_packages_dev:
   - name: postman
   - name: chromium
-  - name: ufw
   - name: dotnet-sdk
     classic: "yes"
   - name: code
@@ -12,3 +10,4 @@ snap_packages_dev:
   - name: node
     classic: "yes"
     channel: 10/stable
+  - name: scrcpy

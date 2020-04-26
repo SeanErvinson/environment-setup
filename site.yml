@@ -1,0 +1,15 @@
+- name: Initialize new machine
+  hosts: lucca
+  gather_facts: True
+  become: Yes
+  tasks:
+  roles:
+    - apt_initialization
+    - apt_installation
+    - docker_installation
+    - snap_installation
+    - snap_configure
+    - git_configuration
+    - host_configuration
+    - ssh_configuration
+    - security_configuration

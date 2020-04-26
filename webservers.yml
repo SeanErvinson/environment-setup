@@ -1,24 +1,3 @@
-- name: Initialize new machine
-  hosts: "{{ variable_host | default('localmachines') }}"
-  gather_facts: True
-  become: Yes
-  vars:
-    default_port: 2127
-  tasks:
-  roles:
-    - apt_initialization
-    - apt_installation
-    - docker_installation
-    - snap_installation
-    - snap_configure
-    - git_configuration
-    - host_configuration
-    - role: ssh_configuration
-      ssh_port: default_port
-    - role: security_configuration
-      ssh_port: ssh_port
-  when: "'variable_host' in group_names"
-
 - name: Initialize new server
   hosts: "{{ variable_host | default('webservers') }}"
   gather_facts: True

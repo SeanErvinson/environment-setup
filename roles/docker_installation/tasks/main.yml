@@ -2,34 +2,23 @@
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+    keyring: /etc/apt/keyrings/docker.gpg
   register: gpg
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version <= 19
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Adding Docker repository to APT
   apt_repository:
-    repo: "{{ apt_18_source }}"
-  when: gpg is succeeded and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '18'
-  register: source
-
-- name: Adding Docker repository to APT
-  apt_repository:
-    repo: "{{ apt_19_source }}"
-  when: gpg is succeeded and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '19'
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+  when: gpg is succeeded and ansible_distribution == 'Ubuntu'
   register: source
 
 - name: Update apt
   apt:
     update_cache: yes
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < 19
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install Docker-CE
   apt:
-    package: docker-ce
-    state: present
-  when: source is succeeded and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < 19
-
-- name: Install docker-compose (including the base docker) from apt
-  apt:
-    package: docker-compose
-    state: present
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '20'
+    package: "{{ item.name }}"
+  when: source is succeeded and ansible_distribution == 'Ubuntu'
+  with_items: "{{ docker_packages }}"

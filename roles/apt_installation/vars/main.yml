@@ -7,15 +7,12 @@ required_apt_packages:
   - name: "git"
   - name: "ca-certificates"
   - name: "ssh"
+  - name: "gnupg"
   - name: "openssh-server"
   - name: "apt-transport-https"
+  - name: "htop"
+  - name: ufw
 
 desktop_apt_packages:
-  - name: "htop"
-  - name: "snapd"
-  - name: "postgresql"
-  - name: "postgresql-contrib"
-  - name: "openjdk-11-jdk"
 
 server_apt_packages:
-  - name: ufw

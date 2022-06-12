@@ -3,17 +3,16 @@
     name: "{{ item.name }}"
     state: present
   with_items: "{{ required_apt_packages }}"
+# - name: Install desktop apt packages
+#   apt:
+#     name: "{{ item.name }}"
+#     state: present
+#   with_items: "{{ desktop_apt_packages }}"
+#   when: "'desktop' in group_names"
 
-- name: Install desktop apt packages
-  apt:
-    name: "{{ item.name }}"
-    state: present
-  with_items: "{{ desktop_apt_packages }}"
-  when: "'desktop' in group_names"
-
-- name: Install server apt packages
-  apt:
-    name: "{{ item.name }}"
-    state: present
-  with_items: "{{ server_apt_packages }}"
-  when: "'webservers' in group_names"
+# - name: Install server apt packages
+#   apt:
+#     name: "{{ item.name }}"
+#     state: present
+#   with_items: "{{ server_apt_packages }}"
+#   when: "'webservers' in group_names"

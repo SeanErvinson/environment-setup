@@ -1,0 +1,8 @@
+- name: Copy ssh keys to hosts
+  copy:
+    src: "{{ item }}"
+    dest: ~/.ssh/
+    mode: 0600
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_fileglob: "~/.ssh/*key*"

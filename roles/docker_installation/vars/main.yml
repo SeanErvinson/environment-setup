@@ -1,3 +1,5 @@
-apt_18_source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-
-apt_19_source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable"
+docker_packages:
+  - name: "docker-ce"
+  - name: "docker-ce-cli"
+  - name: "containerd.io"
+  - name: "docker-compose-plugin"

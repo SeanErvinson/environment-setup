@@ -1,0 +1,18 @@
+- name: Download foo.conf
+  get_url:
+    url: https://packages.microsoft.com/config/ubuntu/{{ansible_distribution_version}}/packages-microsoft-prod.deb
+    dest: /tmp/packages-microsoft-prod.deb
+    mode: "0644"
+
+- name: Install packages-microsoft-prod.deb package
+  apt:
+    deb: /tmp/packages-microsoft-prod.deb
+
+- name: Update apt packages
+  apt:
+    update_cache: yes
+
+- name: Install dotnet-sdk
+  apt:
+    name: "dotnet-sdk-{{ dotnet_sdk_version }}"
+    state: present

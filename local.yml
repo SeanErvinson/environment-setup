@@ -4,12 +4,13 @@
   become: Yes
   tasks:
   roles:
+    - transfer_ssh_key
     - apt_initialization
     - apt_installation
     - docker_installation
-    - snap_installation
-    - snap_configure
+    - dotnet_installation
+    - node_installation
+    - flatpak_installation
     - git_configuration
-    - host_configuration
     - ssh_configuration
     - security_configuration

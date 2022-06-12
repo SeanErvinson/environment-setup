@@ -1,0 +1,4 @@
+- name: Install the flatpak packages
+  community.general.flatpak:
+    name: "{{ item.name }}"
+  with_items: "{{ flatpak_packages }}"

@@ -3,3 +3,4 @@ docker_packages:
   - name: "docker-ce-cli"
   - name: "containerd.io"
   - name: "docker-compose-plugin"
+  - name: "docker-buildx-plugin"

@@ -1,6 +1,11 @@
+- name: Get distro version
+  ansible.builtin.shell: |
+    if command -v lsb_release &> /dev/null; then lsb_release -r -s; else grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"'; fi
+  register: distro_version
+
 - name: Download foo.conf
-  get_url:
-    url: https://packages.microsoft.com/config/ubuntu/{{ansible_distribution_version}}/packages-microsoft-prod.deb
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/config/ubuntu/{{ distro_version.stdout }}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     dest: /tmp/packages-microsoft-prod.deb
     mode: "0644"
 

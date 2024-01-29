@@ -11,8 +11,16 @@ required_apt_packages:
   - name: "openssh-server"
   - name: "apt-transport-https"
   - name: "htop"
-  - name: ufw
+  - name: "ufw"
 
 desktop_apt_packages:
+  - name: "scrcpy"
+  - name: "indicator-sound-switcher"
 
 server_apt_packages:
+
+repositories:
+  - name: "ppa:yktooo/ppa"
+
+deb_packages:
+  - name: "https://launchpad.net/veracrypt/trunk/1.26.7/+download/veracrypt-1.26.7-Ubuntu-22.04-amd64.deb"

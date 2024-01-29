@@ -1,15 +1,25 @@
+- name: Register apt repository
+  ansible.builtin.apt_repository:
+    repo: "{{ item.name }}"
+  with_items: "{{ repositories }}"
+- name: Update apt packages
+  apt:
+    update_cache: yes
 - name: Install required apt packages
   apt:
     name: "{{ item.name }}"
     state: present
   with_items: "{{ required_apt_packages }}"
-# - name: Install desktop apt packages
-#   apt:
-#     name: "{{ item.name }}"
-#     state: present
-#   with_items: "{{ desktop_apt_packages }}"
-#   when: "'desktop' in group_names"
-
+- name: Install desktop apt packages
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  with_items: "{{ desktop_apt_packages }}"
+  when: "'desktop' in group_names"
+- name: Install deb packages
+  apt:
+    deb: "{{ item.name }}"
+  with_items: "{{ deb_packages }}"
 # - name: Install server apt packages
 #   apt:
 #     name: "{{ item.name }}"

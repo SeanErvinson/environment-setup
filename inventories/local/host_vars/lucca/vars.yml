@@ -1,6 +1,6 @@
 ansible_port: 22
 ansible_connection: local
 ansible_user: asean
-dotnet_sdk_version: 6.0
-nvm_version: 0.39.1
+dotnet_sdk_version: 8.0
+nvm_version: 0.39.7
 email: ervinsonong@gmail.com

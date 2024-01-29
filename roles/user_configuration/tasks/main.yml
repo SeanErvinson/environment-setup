@@ -2,7 +2,7 @@
   user:
     name: sean
     comment: Sean Ervinson
-    shell: /bin/bash
+    ansible.builtin.shell: /bin/bash
     groups: docker,sudo
     append: yes
     password: "{{ user_password }}"
@@ -11,7 +11,7 @@
   user:
     name: ci_cd
     comment: ci_cd
-    shell: /bin/bash
+    ansible.builtin.shell: /bin/bash
     groups: docker,sudo
     append: yes
     password: "{{ user_password }}"

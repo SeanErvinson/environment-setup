@@ -1,7 +1,13 @@
 flatpak_packages:
-  - name: com.brave.Browser
+  - name: com.microsoft.Edge
   - name: com.visualstudio.code
   - name: com.jetbrains.Rider
   - name: com.getpostman.Postman
   - name: org.videolan.VLC
   - name: org.chromium.Chromium
+  - name: org.kde.haruna
+  - name: org.audacityteam.Audacity
+  - name: com.obsproject.Studio
+  - name: com.discordapp.Discord
+  - name: com.github.jeromerobert.pdfarranger
+  - name: org.qbittorrent.qBittorrent

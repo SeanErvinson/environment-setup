@@ -1,10 +1,10 @@
 - name: Download and install NVM
-  shell: >
+  ansible.builtin.shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh | bash
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
 - name: Install Node LTS
-  shell: |
+  ansible.builtin.shell: |
     nvm install node
     corepack enable

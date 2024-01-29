@@ -1,0 +1,12 @@
+alias docker-compose="docker compose"
+alias proj="cd ~/RiderProjects"
+alias g="git"
+alias otp="cd ~/RiderProjects/Otp"
+alias del="cd ~/RiderProjects/Delete"
+alias nstep="cd ~/Work"
+alias edl="cd ~/Earendel"
+alias k='kubectl'
+alias kns='kubens'
+alias kctx="kubectx"
+#alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zippy='cd ~/RiderProjects/ProjectMenu'

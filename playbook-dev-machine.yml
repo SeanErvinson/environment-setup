@@ -1,0 +1,17 @@
+- name: Initialize dev machine
+  hosts: lucca
+  gather_facts: false
+  roles:
+    # - var_initialization
+    # - transfer_ssh_key
+    # - apt_installation
+    # - dotfiles_configuration
+    # - docker_installation
+    # - dotnet_9_installation
+    # - node_installation
+    # - ssh_configuration
+    - rider_installation
+    - vscode_installation
+
+    # - flatpak_installation
+    # - security_configuration

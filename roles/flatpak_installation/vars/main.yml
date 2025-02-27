@@ -1,7 +1,5 @@
 flatpak_packages:
   - name: com.microsoft.Edge
-  - name: com.visualstudio.code
-  - name: com.jetbrains.Rider
   - name: com.getpostman.Postman
   - name: org.videolan.VLC
   - name: org.chromium.Chromium

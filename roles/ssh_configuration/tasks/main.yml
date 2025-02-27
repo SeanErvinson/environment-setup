@@ -1,35 +1,35 @@
 - name: Disallow Root Login
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*PermitRootLogin"
     line: "PermitRootLogin no"
-    backup: Yes
+    backup: true
     validate: "/usr/sbin/sshd -T -f %s"
   notify: restart sshd
 
 - name: Disallow Password Authentication
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*PasswordAuthentication"
     line: "PasswordAuthentication no"
-    backup: Yes
+    backup: true
     validate: "/usr/sbin/sshd -T -f %s"
   notify: restart sshd
 
 - name: Change Default Port
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*Port"
     line: "Port {{ ssh_port }}"
-    backup: Yes
+    backup: true
     validate: "/usr/sbin/sshd -T -f %s"
   notify: restart sshd
 
 - name: Allow PublicKey Authentication
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*PubkeyAuthentication"
     line: "PubkeyAuthentication yes"
-    backup: Yes
+    backup: true
     validate: "/usr/sbin/sshd -T -f %s"
   notify: restart sshd

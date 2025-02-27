@@ -1,0 +1,12 @@
+- name: Add dotnet APT repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:dotnet/backports
+    state: present
+    update_cache: true
+
+- name: Install dotnet 9
+  become: true
+  ansible.builtin.apt:
+    name: "dotnet-sdk-9.0"
+    state: present

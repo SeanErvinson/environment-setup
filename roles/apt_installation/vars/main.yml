@@ -1,17 +1,16 @@
 required_apt_packages:
   - name: "wget"
   - name: "build-essential"
-  - name: "curl"
   - name: "gdebi"
-  - name: "net-tools"
   - name: "git"
-  - name: "ca-certificates"
   - name: "ssh"
   - name: "gnupg"
   - name: "openssh-server"
   - name: "apt-transport-https"
   - name: "htop"
   - name: "ufw"
+  - name: "stow"
+  - name: "fzf"
 
 desktop_apt_packages:
   - name: "scrcpy"

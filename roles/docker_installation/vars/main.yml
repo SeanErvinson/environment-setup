@@ -1,6 +1,6 @@
-docker_packages:
-  - name: "docker-ce"
-  - name: "docker-ce-cli"
-  - name: "containerd.io"
-  - name: "docker-compose-plugin"
-  - name: "docker-buildx-plugin"
+docker_archs:
+  x86_64: amd64
+  amd64: amd64
+  arm64: arm64
+docker_arch: "{{ docker_archs[ansible_facts.architecture] }}"
+docker_distribution_release: "{{ ansible_facts.distribution_release }}"

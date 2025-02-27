@@ -1,0 +1,14 @@
+- name: Get env fact
+  ansible.builtin.setup:
+    gather_subset:
+      - env
+
+- name: Clone dotfiles
+  ansible.builtin.git:
+    repo: https://github.com/SeanErvinson/dotfiles.git
+    dest: "{{ ansible_env.HOME }}/dotfiles"
+    version: main
+
+- name: Stow dotfiles
+  ansible.builtin.command: stow -d "{{ ansible_env.HOME }}/dotfiles" .
+  changed_when: true

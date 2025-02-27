@@ -1,0 +1,9 @@
+- name: Download VSCode
+  ansible.builtin.get_url:
+    url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    dest: /tmp/vscode.deb
+    mode: "0755"
+
+- name: Install VScode deb
+  ansible.builtin.apt:
+    deb: /tmp/vscode.deb

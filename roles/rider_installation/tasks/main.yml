@@ -1,0 +1,50 @@
+- name: Query JetBrains API for Rider releases
+  ansible.builtin.uri:
+    url: "https://data.services.jetbrains.com/products?code=RD&release.type=release"
+    method: GET
+    return_content: true
+    body_format: json
+  register: api_response
+
+- name: Setting host facts using complex arguments
+  ansible.builtin.set_fact:
+    rider_version: "{{ (api_response.json | community.general.json_query('[0].releases[0].version')) }}"
+    linux_download_link: "{{ (api_response.json | community.general.json_query('[0].releases[0].downloads.linux.link')) }}"
+
+- name: Download Rider
+  ansible.builtin.get_url:
+    url: "{{ linux_download_link }}"
+    dest: /tmp/rider.tar.gz
+    mode: "0755"
+
+- name: Get distribution release fact
+  ansible.builtin.setup:
+    gather_subset:
+      - env
+
+- name: Create a temporary extraction path
+  become: true
+  ansible.builtin.file:
+    path: "/tmp/rider"
+    state: directory
+    mode: "0755"
+
+- name: Extract Rider
+  become: true
+  ansible.builtin.unarchive:
+    src: /tmp/rider.tar.gz
+    dest: "/tmp/rider"
+
+- name: Create a directory for rider
+  become: true
+  ansible.builtin.file:
+    path: "/opt/rider"
+    state: directory
+    mode: "0755"
+
+- name: Extract Rider
+  become: true
+  ansible.builtin.copy:
+    src: "/tmp/rider/JetBrains Rider-{{ rider_version }}/"
+    dest: "/opt/rider"
+    mode: "0755"

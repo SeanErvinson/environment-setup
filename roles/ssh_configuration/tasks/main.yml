@@ -1,4 +1,5 @@
 - name: Disallow Root Login
+  become:  true
   ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*PermitRootLogin"
@@ -8,6 +9,7 @@
   notify: restart sshd
 
 - name: Disallow Password Authentication
+  become:  true
   ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*PasswordAuthentication"
@@ -17,6 +19,7 @@
   notify: restart sshd
 
 - name: Change Default Port
+  become:  true
   ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*Port"
@@ -26,6 +29,7 @@
   notify: restart sshd
 
 - name: Allow PublicKey Authentication
+  become:  true
   ansible.builtin.lineinfile:
     path: "{{ sshdconfig }}"
     regexp: "^[#]*PubkeyAuthentication"

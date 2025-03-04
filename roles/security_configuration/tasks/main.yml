@@ -1,18 +1,22 @@
 - name: Enable UFW
+  become: true
   ufw:
     state: enabled
     policy: allow
     logging: "on"
 - name: Deny default SSH port
+  become: true
   ufw:
     rule: deny
     port: ssh
     proto: tcp
 - name: Allow OpenSSH
+  become: true
   ufw:
     rule: allow
     name: OpenSSH
 - name: Limit SSH
+  become: true
   ufw:
     rule: limit
     proto: tcp

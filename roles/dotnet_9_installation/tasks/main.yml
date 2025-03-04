@@ -1,6 +1,7 @@
 - name: Add dotnet APT repository
   become: true
   ansible.builtin.apt_repository:
+    codename: "{{ ubuntu_codename }}"
     repo: ppa:dotnet/backports
     state: present
     update_cache: true

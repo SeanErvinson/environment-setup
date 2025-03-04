@@ -1,23 +1,23 @@
 - name: Enable UFW
   become: true
-  ufw:
+  community.general.ufw:
     state: enabled
     policy: allow
     logging: "on"
 - name: Deny default SSH port
   become: true
-  ufw:
+  community.general.ufw:
     rule: deny
     port: ssh
     proto: tcp
 - name: Allow OpenSSH
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     name: OpenSSH
 - name: Limit SSH
   become: true
-  ufw:
+  community.general.ufw:
     rule: limit
     proto: tcp
     port: "{{ ssh_port }}"

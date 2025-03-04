@@ -1,0 +1,12 @@
+- name: Extract OS codename
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail #
+      grep UBUNTU_CODENAME /etc/os-release | awk -F"=" '{ print $2 }'
+    executable: /bin/bash
+  register: ubuntu_codename_output
+  changed_when: "ubuntu_codename_output.rc != 0"
+
+- name: Setting facts
+  ansible.builtin.set_fact:
+    ubuntu_codename: "{{ ubuntu_codename_output.stdout }}"

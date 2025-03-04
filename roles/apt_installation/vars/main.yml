@@ -10,6 +10,7 @@ required_apt_packages:
   - name: "htop"
   - name: "ufw"
   - name: "stow"
+  - name: "gh"
 
 desktop_apt_packages:
   - name: "scrcpy"

@@ -1,0 +1,27 @@
+- name: Check if fzf is installed
+  ansible.builtin.shell: command -v fzf >/dev/null 2>&1
+  register: fzf_command
+  ignore_errors: true
+  changed_when: false
+
+- name: Clone, and install fzf
+  when: fzf_command.rc != 0
+  ignore_errors: true
+  block:
+    - name: Get env fact
+      ansible.builtin.setup:
+        gather_subset:
+          - env
+
+    - name: Clone fzf
+      ansible.builtin.git:
+        repo: https://github.com/junegunn/fzf.git
+        dest: "{{ ansible_env.HOME }}/.fzf"
+        depth: 1
+        version: master
+
+    - name: Run fzf installer
+      ansible.builtin.shell:
+        cmd: "{{ ansible_env.HOME }}/.fzf/install"
+        executable: /bin/bash
+      changed_when: false

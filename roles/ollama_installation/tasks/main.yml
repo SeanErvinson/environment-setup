@@ -1,0 +1,27 @@
+- name: Check if ollama is installed
+  ansible.builtin.shell: command -v ollama >/dev/null 2>&1
+  register: ollama_command
+  ignore_errors: true
+  changed_when: false
+
+- name: Clone, and install ollama
+  when: ollama_command.rc != 0
+  ignore_errors: true
+  block:
+    - name: Get env fact
+      ansible.builtin.setup:
+        gather_subset:
+          - env
+
+    - name: Download ollama
+      ansible.builtin.uri:
+        url: https://ollama.com/install.sh
+        return_content: true
+      register: ollama_installer
+
+    - name: Run ollama script installer
+      ansible.builtin.shell:
+        cmd: sh -s -- -y
+        stdin: "{{ ollama_installer.content }}"
+        executable: /bin/sh
+      changed_when: false

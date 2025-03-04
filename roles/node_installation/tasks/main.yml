@@ -1,25 +1,39 @@
-- name: Download and install fnm
-  ansible.builtin.get_url:
-    url: https://fnm.vercel.app/install
-    dest: /tmp/fnm.sh
-    mode: "0755"
+- name: Check if fnm is installed
+  ansible.builtin.shell: command -v fnm >/dev/null 2>&1
+  register: fnm_command
+  ignore_errors: true
+  changed_when: false
+
+- name: Clone, and install fnm
+  when: fnm_command.rc != 0
+  ignore_errors: true
+  block:
+    - name: Download fnm
+      ansible.builtin.uri:
+        url: https://fnm.vercel.app/install
+        return_content: true
+      register: fnm_installer
+
+    - name: Run fnm script installer
+      ansible.builtin.shell:
+        cmd: sh -s -- --skip-shell
+        stdin: "{{ fnm_installer.content }}"
+        executable: /bin/sh
+      changed_when: false
+
 
 - name: Get env fact
   ansible.builtin.setup:
     gather_subset:
       - env
 
-- name: Execute fnm installation script
-  ansible.builtin.shell: >
-    bash /tmp/fnm.sh -- --skip-shell
-  changed_when: true
-
 - name: Install Node LTS
   ansible.builtin.shell: |
-    fnm install --lts
+    source {{ ansible_env.HOME }}/.bashrc
+    fnm install --lts --corepack-enabled
   changed_when: true
 
 - name: Install pnpm
-  ansible.builtin.shell: |
+  ansible.builtin.shell: >
     corepack enable pnpm
   changed_when: true

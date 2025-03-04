@@ -1,17 +1,18 @@
 - name: Initialize dev machine
-  hosts: lucca
+  hosts: robo
   gather_facts: false
   roles:
-    # - var_initialization
-    # - transfer_ssh_key
-    # - apt_installation
-    # - dotfiles_configuration
-    # - docker_installation
-    # - dotnet_9_installation
-    # - node_installation
-    # - ssh_configuration
+    - var_initialization
+    - transfer_ssh_key
+    - apt_installation
+    - dotfiles_configuration
+    - docker_installation
+    - dotnet_9_installation
+    - node_installation
     - rider_installation
     - vscode_installation
-
-    # - flatpak_installation
-    # - security_configuration
+    - fzf_installation
+    - ollama_installation
+    - flatpak_installation
+    - ssh_configuration
+    - security_configuration

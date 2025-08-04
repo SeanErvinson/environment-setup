@@ -13,3 +13,9 @@ ansible-playbook -i inventories/local/hosts.yml -K playbook-dev-machine.yml
 Inventory - is the target machine/s
 Playbook - is the orchestrator of the different roles
 Role/s - is the repeatable group of tasks
+
+
+
+To add
+- curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+- curl -s https://ohmyposh.dev/install.sh | bash -s
